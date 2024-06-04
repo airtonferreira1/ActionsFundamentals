@@ -1,0 +1,28 @@
+name: GH Actions demo
+
+on:
+  push:
+    branches: main
+  pull_request:
+    branches:main
+  schedule:
+    - cron: '15 6 * * 0'
+  workflow_dispatch: 
+
+
+jobs:
+  Build:
+    name: Build Demo
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+        echo " The job was triggered: ${{github.event_name }}"
+        echo " Name of the Branch: ${{ github.ref }}"
+
+      - uses: actions/checkout@v4
+
+      - name: List files in the repo
+        run: |
+          echo " The repo ${{ github.repository }} has these files:"
+          tree
+          
